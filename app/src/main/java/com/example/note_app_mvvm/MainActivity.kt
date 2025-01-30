@@ -77,7 +77,6 @@ class MainActivity : ComponentActivity() {
 
                         // Display todo statistics
                         Text("Number of todos: ${todos.size}")
-                        Text("Number of todos left: ${todos.count { !it.isChecked }}")
 
                         Spacer(modifier = Modifier.height(24.dp))
 
