@@ -1,6 +1,7 @@
 package com.example.note_app_mvvm
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -13,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.note_app_mvvm.ui.theme.NoteappmvvmTheme
+import kotlin.math.log
 
 data class TodoItem(
     val title: String,
@@ -31,7 +33,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     var titleText by remember { mutableStateOf("") }
                     var descriptionText by remember { mutableStateOf("") }
-                    var todos by remember { mutableStateOf(mutableListOf<TodoItem>()) }
+                    var todos by remember { mutableStateOf(mutableStateListOf<TodoItem>()) }
 
                     Column(modifier = Modifier.padding(12.dp)) {
                         Text(text = "Todo app", fontSize = 32.sp)
@@ -61,7 +63,7 @@ class MainActivity : ComponentActivity() {
                         // Add Todo Button
                         Button(onClick = {
                             if (titleText.isNotBlank()) {
-                                todos = (todos + TodoItem(titleText, descriptionText)).toMutableList()
+                                todos.add(TodoItem(titleText, descriptionText))
                                 titleText = ""
                                 descriptionText = ""
                             }
@@ -100,9 +102,11 @@ class MainActivity : ComponentActivity() {
                                     Checkbox(
                                         checked = todo.isChecked,
                                         onCheckedChange = { checked ->
-                                            todos = todos.map {
-                                                if (it == todo) it.copy(isChecked = checked) else it
-                                            }.toMutableList()
+                                            Log.d("asd", checked.toString())
+                                            val todoItemIndex = todos.indexOf(todo)
+                                            if (todoItemIndex != -1) {
+                                                todos[todoItemIndex] = todo.copy(isChecked = checked) // Trigger recomposition
+                                            }
                                         }
                                     )
 
@@ -114,7 +118,7 @@ class MainActivity : ComponentActivity() {
                                     }
 
                                     Button(onClick = {
-                                        todos = todos.filter { it != todo }.toMutableList()
+                                        todos.remove(todo)
                                     }) {
                                         Text("Delete")
                                     }
