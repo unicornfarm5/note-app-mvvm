@@ -116,12 +116,6 @@ class MainActivity : ComponentActivity() {
                                             Text(todo.description, fontSize = 14.sp)
                                         }
                                     }
-
-                                    Button(onClick = {
-                                        todos.remove(todo)
-                                    }) {
-                                        Text("Delete")
-                                    }
                                 }
                             }
                         }
