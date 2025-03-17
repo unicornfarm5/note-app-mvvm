@@ -17,12 +17,6 @@ import com.example.note_app_mvvm.ui.theme.NoteappmvvmTheme
 import kotlin.math.log
 
 
-//classen skal være i en class fil der hedder ToDOItem
-data class TodoItem(
-    val title: String,
-    val description: String,
-    var isChecked: Boolean = false
-)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
