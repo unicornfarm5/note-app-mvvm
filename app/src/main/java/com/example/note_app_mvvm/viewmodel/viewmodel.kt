@@ -10,6 +10,6 @@ class viewmodel {
 }
 
 class TitleCard:ViewModel () {
-    var titleText = { mutableStateOf("") }
-    var descriptionText = { mutableStateOf("") }
+    var titleText by mutableStateOf("")
+    var descriptionText by mutableStateOf("")
 }

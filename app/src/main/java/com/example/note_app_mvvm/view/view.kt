@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import com.example.note_app_mvvm.viewmodel.TitleCard
 
+/*
 @Composable
 fun TitleCard (TitleCard: TitleCard) {
     Column(modifier = Modifier.padding(12.dp)) {
@@ -33,12 +34,7 @@ fun TitleCard (TitleCard: TitleCard) {
         Spacer(modifier = Modifier.height(16.dp))
 
         // Description input
-        TextField(
-            value = descriptionText,
-            label = { Text(viewModel.titletext) },
-            modifier = Modifier.fillMaxWidth(),
-            onValueChange = { descriptionText = it }
-        )
+
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -52,4 +48,16 @@ fun TitleCard (TitleCard: TitleCard) {
         }) {
             Text("Add todo")
         }
+    }
+}
+
+ */
+
+@Composable
+fun InputField (titleCard:TitleCard, titleText:String) {
+    TextField(
+        value = "text,",
+        onValueChange = { titleCard.descriptionText = it },
+        label = { Text("Label") }
+    )
 }
