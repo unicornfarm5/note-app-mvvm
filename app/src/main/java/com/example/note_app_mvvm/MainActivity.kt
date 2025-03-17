@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.sp
 import com.example.note_app_mvvm.ui.theme.NoteappmvvmTheme
 import kotlin.math.log
 
+
+//classen skal være i en class fil der hedder ToDOItem
 data class TodoItem(
     val title: String,
     val description: String,
@@ -31,6 +33,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    //de her er iviewmodel
                     var titleText by remember { mutableStateOf("") }
                     var descriptionText by remember { mutableStateOf("") }
                     var todos by remember { mutableStateOf(mutableStateListOf<TodoItem>()) }
@@ -102,7 +105,8 @@ class MainActivity : ComponentActivity() {
                                     Checkbox(
                                         checked = todo.isChecked,
                                         onCheckedChange = { checked ->
-                                            Log.d("asd", checked.toString())
+                                           // Log.d("asd", checked.toString())
+
                                             val todoItemIndex = todos.indexOf(todo)
                                             if (todoItemIndex != -1) {
                                                 todos[todoItemIndex] = todo.copy(isChecked = checked) // Trigger recomposition
@@ -110,6 +114,7 @@ class MainActivity : ComponentActivity() {
                                         }
                                     )
 
+                                    //view
                                     Column(modifier = Modifier.weight(1f)) {
                                         Text(todo.title, fontWeight = FontWeight.Bold)
                                         if (todo.description.isNotBlank()) {
